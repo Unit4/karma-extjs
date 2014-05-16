@@ -1,0 +1,22 @@
+
+<!-- saved from url=(0076)https://raw.githubusercontent.com/sindresorhus/gulp-jasmine/master/.jshintrc -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">{
+	"node": true,
+	"esnext": true,
+	"bitwise": true,
+	"camelcase": true,
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"indent": 4,
+	"newcap": true,
+	"noarg": true,
+	"quotmark": "single",
+	"regexp": true,
+	"undef": true,
+	"unused": true,
+	"strict": true,
+	"trailing": true,
+	"smarttabs": true
+}
+</pre></body></html>
