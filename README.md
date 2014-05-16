@@ -1,7 +1,5 @@
 # [karma](http://karma-runner.github.io/)-extjs [![Build Status](https://travis-ci.org/bjornhol/karma-extjs.svg?branch=master)](https://travis-ci.org/bjornhol/karma-extjs)
 
-====
-
 Use Karma to run tests for Ext JS applications. Run tests without any html-file facilitation.
 
 ## Install
