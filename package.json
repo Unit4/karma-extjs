@@ -1,6 +1,6 @@
 {
   "name": "karma-extjs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Use Karma to run tests for Ext JS applications",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "q": "~1.0.1",
     "ecstatic": "~0.5.3",
     "karma": "~0.12.16",
+    "karma-coverage": "~0.2.1",
     "jsb3": "~0.2.1",
     "merge": "~1.1.3"
   },
