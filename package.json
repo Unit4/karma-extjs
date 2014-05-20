@@ -1,6 +1,6 @@
 {
   "name": "karma-extjs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Use Karma to run tests for Ext JS applications",
   "main": "index.js",
   "scripts": {
@@ -27,11 +27,18 @@
   "homepage": "https://github.com/bjornhol/karma-extjs",
   "dependencies": {
     "q": "~1.0.1",
-    "ecstatic": "~0.5.3",
+    "ecstatic": "~0.5.3",    
+    "jsb3": "~0.2.1",
+    "merge": "~1.1.3",
     "karma": "~0.12.16",
     "karma-coverage": "~0.2.1",
-    "jsb3": "~0.2.1",
-    "merge": "~1.1.3"
+    "karma-jasmine": "~0.1.5",
+    "karma-chrome-launcher": "~0.1.3",
+    "karma-ie-launcher": "~0.1.5",
+    "karma-script-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-junit-reporter": "~0.2.2",
+    "karma-phantomjs-launcher": "~0.1.4"
   },
   "devDependencies": {
     "mocha": "~1.18.2"
