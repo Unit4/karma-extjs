@@ -75,12 +75,14 @@ module.exports = {
     serveStatic: function (port) {
         var location = './';
 
-        return server = http.createServer(
+        var server = http.createServer(
             ecstatic({ root: location })
         ).listen(port, function () {
             console.log('Serving '+ path.resolve(location) +' on port ' + port);
         }).on('close', function () {
             console.log('Server closing '+ path.resolve(location) +' on port ' + port);
         });
+
+        return server
     }
 };
