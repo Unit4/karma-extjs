@@ -50,14 +50,14 @@ module.exports = {
     startKarma: function (options){
         var deferred = Q.defer();
         
-        this.serveStatic(options.staticPort);
+        var staticServer = this.serveStatic(options.staticPort);
 
         karma.start(options.karma, function(exitCode) {
             console.log('Karma has exited with ' + exitCode);
             deferred.resolve();
 
-            // The community is fixing this (listeneres are preventing server stop)
-            process.exit(exitCode);
+            // Close the static server after karma exists
+            staticServer.close()
         });
 
         return deferred.promise;
@@ -75,10 +75,14 @@ module.exports = {
     serveStatic: function (port) {
         var location = './';
 
-        http.createServer(
-          ecstatic({ root: location })
-        ).listen(port);
+        var server = http.createServer(
+            ecstatic({ root: location })
+        ).listen(port, function () {
+            console.log('Serving '+ path.resolve(location) +' on port ' + port);
+        }).on('close', function () {
+            console.log('Server closing '+ path.resolve(location) +' on port ' + port);
+        });
 
-        console.log('Serving '+ path.resolve(location) +' on port ' + port);
+        return server
     }
 };
