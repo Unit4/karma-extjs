@@ -1,0 +1,29 @@
+{
+    "projectName": "Example",
+    "licenseText": "",
+    "packages": [
+        {
+            "name": "APP",
+            "target": "pkgs/app.js",
+            "id": "app",
+            "files": [
+                {
+                    "path": "../src/mixin/",
+                    "name": "Badge.js"
+                }
+            ]
+        }
+    ],
+    "builds": [
+        {
+            "name": "All Debug",
+            "target": "all-debug.js",
+            "packages": [
+                "app"
+            ]
+        }
+    ],
+    "resources": [
+
+    ]
+}

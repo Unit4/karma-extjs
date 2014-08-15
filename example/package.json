@@ -1,0 +1,17 @@
+{
+  "name": "Example",
+  "description": "Example",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "gulp": "*",
+    "gulp-compass": "1.1.x",
+    "gulp-concat": "2.2.x",
+    "gulp-jshint": "1.5.x",
+    "gulp-rename": "1.2.x",
+    "gulp-uglify": "0.2.x",
+    "gulp-util": "2.2.x",
+    "yargs": "1.2.x",
+    "karma-extjs": "0.1.8"
+  }
+}
