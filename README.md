@@ -1,6 +1,6 @@
 # [karma](http://karma-runner.github.io/)-extjs [![Build Status](https://travis-ci.org/bjornhol/karma-extjs.svg?branch=master)](https://travis-ci.org/bjornhol/karma-extjs) [![NPM Version](http://img.shields.io/npm/v/karma-extjs.svg)](https://www.npmjs.org/package/karma-extjs) [![Dependency Status](https://david-dm.org/bjornhol/karma-extjs.svg)](https://david-dm.org/bjornhol/karma-extjs)
 
-Use Karma to run tests for Ext JS applications. Run tests without any html-file facilitation.
+Use Karma to run tests for Ext JS applications. Run tests and measure coverage without any html-file facilitation.
 
 ## Install
 
