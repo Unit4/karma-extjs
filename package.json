@@ -26,10 +26,10 @@
   },
   "homepage": "https://github.com/bjornhol/karma-extjs",
   "dependencies": {
-    "q": "1.0.x",
-    "ecstatic": "0.5.x",
+    "q": "1.1.x",
+    "ecstatic": "0.6.x",
     "jsb3": "0.2.x",
-    "merge": "1.1.x",
+    "merge": "1.2.x",
     "karma": "0.12.x",
     "karma-coverage": "0.2.x",
     "karma-jasmine": ">=0.3.5",
