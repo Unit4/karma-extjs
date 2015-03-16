@@ -54,7 +54,7 @@ module.exports = {
 
         karma.start(options.karma, function(exitCode) {
             console.log('Karma has exited with ' + exitCode);
-            deferred.resolve();
+            deferred.resolve(exitCode);
 
             // Close the static server after karma exists
             staticServer.close()
