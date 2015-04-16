@@ -2,8 +2,8 @@
 
 Use Karma to run tests for Ext JS applications. Run tests and measure coverage without any html-file facilitation.
 
-[![Build Status][travis-image]][travis-url] 
 [![NPM Version][npm-image]][npm-url] 
+[![Build Status][travis-image]][travis-url] 
 [![Dependency Status][dependencies-image]][dependencies-url]
 
 ## Install
