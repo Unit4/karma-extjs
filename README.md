@@ -123,5 +123,5 @@ Note: **proxies** option is overridden and cannot be configured through the API.
 [travis-url]: https://travis-ci.org/Unit4/karma-extjs
 [npm-image]: http://img.shields.io/npm/v/karma-extjs.svg
 [npm-url]: https://www.npmjs.org/package/karma-extjs
-[dependencies-image]: https://david-dm.org/bjornhol/karma-extjs.svg
-[dependencies-url]: https://david-dm.org/bjornhol/karma-extjs
+[dependencies-image]: https://david-dm.org/unit4/karma-extjs.svg
+[dependencies-url]: https://david-dm.org/unit4/karma-extjs
