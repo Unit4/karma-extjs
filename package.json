@@ -1,14 +1,20 @@
 {
   "name": "karma-extjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use Karma to run tests for Ext JS applications",
+  "license": "MIT",
+  "author": "Bjørn Harald Olsen <bjornhol@gmail.com>",
+  "homepage": "https://github.com/unit4/karma-extjs",
+  "contributors": [
+    "Juan Gabriel Jiménez <juangabreil@gmail.com>"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bjornhol/karma-extjs.git"
+    "url": "git://github.com/unit4/karma-extjs.git"
   },
   "keywords": [
     "karma",
@@ -18,13 +24,10 @@
     "sencha",
     "extjs",
     "jsb3"
-  ],
-  "author": "Bjørn Harald Olsen",
-  "license": "MIT",
+  ],  
   "bugs": {
-    "url": "https://github.com/bjornhol/karma-extjs/issues"
-  },
-  "homepage": "https://github.com/bjornhol/karma-extjs",
+    "url": "https://github.com/unit4/karma-extjs/issues"
+  },  
   "dependencies": {
     "q": "1.1.x",
     "ecstatic": "0.6.x",

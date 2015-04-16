@@ -1,6 +1,10 @@
-# [karma](http://karma-runner.github.io/)-extjs [![Build Status](https://travis-ci.org/bjornhol/karma-extjs.svg?branch=master)](https://travis-ci.org/bjornhol/karma-extjs) [![NPM Version](http://img.shields.io/npm/v/karma-extjs.svg)](https://www.npmjs.org/package/karma-extjs) [![Dependency Status](https://david-dm.org/bjornhol/karma-extjs.svg)](https://david-dm.org/bjornhol/karma-extjs)
+# [karma](http://karma-runner.github.io/)-extjs 
 
 Use Karma to run tests for Ext JS applications. Run tests and measure coverage without any html-file facilitation.
+
+[![Build Status][travis-image]][travis-url] 
+[![NPM Version][npm-image]][npm-url] 
+[![Dependency Status][dependencies-image]][dependencies-url]
 
 ## Install
 
@@ -113,4 +117,11 @@ Note: **proxies** option is overridden and cannot be configured through the API.
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Bjørn Harald Olsen](https://github.com/bjornhol)
+[MIT](http://opensource.org/licenses/MIT) © [Unit4](http://www.unit4.com/)
+
+[travis-image]: https://travis-ci.org/Unit4/karma-extjs.svg?branch=master
+[travis-url]: https://travis-ci.org/Unit4/karma-extjs
+[npm-image]: http://img.shields.io/npm/v/karma-extjs.svg
+[npm-url]: https://www.npmjs.org/package/karma-extjs
+[dependencies-image]: https://david-dm.org/bjornhol/karma-extjs.svg
+[dependencies-url]: https://david-dm.org/bjornhol/karma-extjs
