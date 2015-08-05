@@ -34,6 +34,7 @@ module.exports = {
         options.karma.frameworks = options.karma.frameworks || ['jasmine'];
         options.karma.preprocessors = options.karma.preprocessors || {};
         options.karma.proxies = { '/base' : 'http://localhost:' + options.staticPort };
+        options.karma.client = { args: options.filter ? ['--grep=' + options.filter] : [] };
 
         options.karma.files = options.beforeSource.concat(source)
             .concat(options.afterSource)
