@@ -29,19 +29,21 @@
     "url": "https://github.com/unit4/karma-extjs/issues"
   },  
   "dependencies": {
-    "q": "1.1.x",
-    "ecstatic": "0.6.x",
+    "q": "2.0.x",
+    "ecstatic": "0.8.x",
     "jsb3": "1.0.x",
     "merge": "1.2.x",
-    "karma": "0.12.x",
-    "karma-coverage": "0.2.x",
+    "karma": "0.13.x",
+    "karma-coverage": "0.4.x",
     "karma-jasmine": ">=0.3.5",
-    "karma-chrome-launcher": "0.1.x",
-    "karma-ie-launcher": "0.1.x",
+    "jasmine-core": "2.2.x",
+    "karma-chrome-launcher": "0.2.x",
+    "karma-ie-launcher": "0.2.x",
     "karma-script-launcher": "0.1.x",
     "karma-firefox-launcher": "0.1.x",
-    "karma-junit-reporter": "0.2.x",
-    "karma-phantomjs-launcher": "0.1.x"
+    "karma-junit-reporter": "0.3.x",
+    "karma-phantomjs-launcher": "0.2.x",
+    "phantomjs": "1.9.x"
   },
   "devDependencies": {
     "mocha": "*"

@@ -3,7 +3,7 @@ var Q = require('q');
 var path = require('path');
 var http = require('http');
 var ecstatic = require('ecstatic');
-var karma = require('karma').server;
+var Server = require('karma').Server;
 var merge = require('merge');
 var jsb3 = require('jsb3');
 
@@ -53,13 +53,15 @@ module.exports = {
         
         var staticServer = this.serveStatic(options.staticPort);
 
-        karma.start(options.karma, function(exitCode) {
+        var karma = new Server(options.karma, function(exitCode) {
             console.log('Karma has exited with ' + exitCode);
             deferred.resolve(exitCode);
 
             // Close the static server after karma exists
             staticServer.close()
         });
+
+        karma.start();
 
         return deferred.promise;
     },
