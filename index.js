@@ -36,6 +36,13 @@ module.exports = {
         options.karma.proxies = { '/base' : 'http://localhost:' + options.staticPort };
         options.karma.client = { args: options.filter ? ['--grep=' + options.filter] : [] };
 
+        if(options.filterSource){
+            var regex = new RegExp(options.filterSource);
+            source = source.filter(function(file){
+                return regex.test(file);
+            });    
+        }
+
         options.karma.files = options.beforeSource.concat(source)
             .concat(options.afterSource)
             .concat(options.tests);
