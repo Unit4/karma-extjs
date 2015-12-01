@@ -106,3 +106,20 @@ it('should concat before files, source files, after files and spec files', funct
 
     cb();
 });
+
+it('should filter source files by given expression in filterSources config', function (cb){
+var options = kextjs.setOptions({        
+        beforeSource: ['before.js'],
+        afterSource: ['after.js'],
+        tests: ['fixture1.js', 'fixture2.js'],
+        filterSource: 'U4/src/some'
+    }, ['U4/src/some/src1.js', 'U4/src/other/src2.js']);
+
+    assert.strictEqual('fixture2.js', options.karma.files.pop());
+    assert.strictEqual('fixture1.js', options.karma.files.pop());
+    assert.strictEqual('after.js', options.karma.files.pop());
+    assert.strictEqual('U4/src/some/src1.js', options.karma.files.pop());
+    assert.strictEqual('before.js', options.karma.files.pop());
+
+    cb();
+});
