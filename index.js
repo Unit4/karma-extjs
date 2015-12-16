@@ -8,18 +8,19 @@ var merge = require('merge');
 var jsb3 = require('jsb3');
 
 module.exports = {
-    run: function (options){
+    run: function(options) {
         var me = this;
 
-        return jsb3(options.jsb3).then(function (source){
+        return jsb3(options.jsb3).then(function(source) {
             return me.startKarma(me.setOptions(options, source));
         });
     },
 
-    setOptions: function (options, source){
+    setOptions: function(options, source) {
+        source = source || [];
         options = options || {};
         options.karma = options.karma || [];
-        
+
         // Default options
         options.coverage = options.coverage || false;
         options.staticPort = options.staticPort || 9877;
@@ -27,37 +28,55 @@ module.exports = {
         options.afterSource = options.afterSource || [];
 
         // Karma options
-        options.karma.port = options.karma.port || 9876;        
+        options.karma.port = options.karma.port || 9876;
         options.karma.singleRun = options.karma.singleRun !== false;
         options.karma.reporters = options.karma.reporters || ['progress'];
         options.karma.browsers = options.karma.browsers || ['Chrome'];
         options.karma.frameworks = options.karma.frameworks || ['jasmine'];
         options.karma.preprocessors = options.karma.preprocessors || {};
-        options.karma.proxies = { '/base' : 'http://localhost:' + options.staticPort };
-        options.karma.client = { args: options.filter ? ['--grep=' + options.filter] : [] };
+        options.karma.proxies = {
+            '/base': 'http://localhost:' + options.staticPort
+        };
+        options.karma.client = {
+            args: options.filter ? ['--grep=' + options.filter] : []
+        };
 
-        if(options.filterSource){
-            var regex = new RegExp(options.filterSource);
-            source = source.filter(function(file){
-                return regex.test(file);
-            });    
+        var sources = source.slice(0);
+
+        if (options.filterSource) {
+            var sourcesRegex = new RegExp(options.filterSource);
+            sources = sources.filter(function(file) {
+                return sourcesRegex.test(file);
+            });
         }
 
-        options.karma.files = options.beforeSource.concat(source)
+        var filesToCover = sources.slice(0);
+
+        if (options.filterCoverage) {
+            var filterCoverage = options.filterCoverage.replace(/\\/g, '\\');
+                filterCoverage = filterCoverage.replace(/\//g, '\/');
+            var coverageRegex = new RegExp(filterCoverage);
+
+            filesToCover = filesToCover.filter(function(file) {
+                return coverageRegex.test(file);
+            });
+        }
+
+        options.karma.files = options.beforeSource.concat(sources)
             .concat(options.afterSource)
             .concat(options.tests);
 
-        if (options.coverage && source){
+        if (options.coverage && sources) {
             options.karma.reporters.push('coverage');
-            options.karma.preprocessors = merge(options.karma.preprocessors, this.preprocessCoverage(source));
+            options.karma.preprocessors = merge(options.karma.preprocessors, this.preprocessCoverage(filesToCover));
         }
 
         return options;
     },
 
-    startKarma: function (options){
+    startKarma: function(options) {
         var deferred = Q.defer();
-        
+
         var staticServer = this.serveStatic(options.staticPort);
 
         var karma = new Server(options.karma, function(exitCode) {
@@ -65,7 +84,7 @@ module.exports = {
             deferred.resolve(exitCode);
 
             // Close the static server after karma exists
-            staticServer.close()
+            staticServer.close();
         });
 
         karma.start();
@@ -73,26 +92,28 @@ module.exports = {
         return deferred.promise;
     },
 
-    preprocessCoverage: function (files){
-        var cover = {}
-        files.forEach(function(file){
+    preprocessCoverage: function(files) {
+        var cover = {};
+        files.forEach(function(file) {
             cover[file] = 'coverage';
         });
 
         return cover;
-    }, 
+    },
 
-    serveStatic: function (port) {
+    serveStatic: function(port) {
         var location = './';
 
         var server = http.createServer(
-            ecstatic({ root: location })
-        ).listen(port, function () {
-            console.log('Serving '+ path.resolve(location) +' on port ' + port);
-        }).on('close', function () {
-            console.log('Server closing '+ path.resolve(location) +' on port ' + port);
+            ecstatic({
+                root: location
+            })
+        ).listen(port, function() {
+            console.log('Serving ' + path.resolve(location) + ' on port ' + port);
+        }).on('close', function() {
+            console.log('Server closing ' + path.resolve(location) + ' on port ' + port);
         });
 
-        return server
+        return server;
     }
 };
