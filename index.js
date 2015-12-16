@@ -37,6 +37,7 @@ module.exports = {
         options.karma.client = { args: options.filter ? ['--grep=' + options.filter] : [] };
 
         if(options.filterSource){
+            options.filterSource = options.filterSource.replace(/\\/g, '\\\\');
             var regex = new RegExp(options.filterSource);
             source = source.filter(function(file){
                 return regex.test(file);
