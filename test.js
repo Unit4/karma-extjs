@@ -2,16 +2,16 @@
 var assert = require('assert');
 var kextjs = require('./index');
 
-it('should add coverage to preprocessor dictionary', function(cb){
+it('should add coverage to preprocessor dictionary', function(cb) {
     var prep = kextjs.preprocessCoverage(['file1', 'file2']);
-    
+
     assert.strictEqual('coverage', prep.file1);
     assert.strictEqual('coverage', prep.file2);
 
     cb();
 });
 
-it('should default module options', function (cb){
+it('should default module options', function(cb) {
     var options = kextjs.setOptions();
     assert(options.beforeSource);
     assert(options.beforeSource.length === 0)
@@ -23,7 +23,7 @@ it('should default module options', function (cb){
     cb();
 });
 
-it('should default karma options', function (cb){
+it('should default karma options', function(cb) {
     var options = kextjs.setOptions();
     assert.strictEqual(9876, options.karma.port, 'Expects default port');
     assert(options.karma.singleRun);
@@ -35,7 +35,7 @@ it('should default karma options', function (cb){
     cb();
 });
 
-it('should not override module options', function (cb){
+it('should not override module options', function(cb) {
     var options = kextjs.setOptions({
         beforeSource: ['before.js'],
         afterSource: ['after.js'],
@@ -53,7 +53,7 @@ it('should not override module options', function (cb){
     cb();
 });
 
-it('should not override karma options', function (cb){
+it('should not override karma options', function(cb) {
     var options = kextjs.setOptions({
         karma: {
             port: 1111,
@@ -61,7 +61,9 @@ it('should not override karma options', function (cb){
             reporters: ['otherreporter'],
             browsers: ['otherbrowser'],
             frameworks: ['otherframework'],
-            preprocessors: { myfile: 'process' }
+            preprocessors: {
+                myfile: 'process'
+            }
         }
     });
 
@@ -75,12 +77,12 @@ it('should not override karma options', function (cb){
     cb();
 });
 
-it('should add coverage preprocessors', function (cb){
-    var options = kextjs.setOptions({        
+it('should add coverage preprocessors', function(cb) {
+    var options = kextjs.setOptions({
         coverage: true,
         karma: {
             reporters: ['junit']
-        }        
+        }
     }, ['file1', 'file2']);
 
     assert.strictEqual('coverage', options.karma.reporters.pop(), 'Expects coverage reporter');
@@ -90,11 +92,11 @@ it('should add coverage preprocessors', function (cb){
     cb();
 });
 
-it('should concat before files, source files, after files and spec files', function (cb){
-    var options = kextjs.setOptions({        
+it('should concat before files, source files, after files and spec files', function(cb) {
+    var options = kextjs.setOptions({
         beforeSource: ['before.js'],
         afterSource: ['after.js'],
-        tests: ['fixture1.js', 'fixture2.js']        
+        tests: ['fixture1.js', 'fixture2.js']
     }, ['src1.js', 'src2.js']);
 
     assert.strictEqual('fixture2.js', options.karma.files.pop());
@@ -107,8 +109,8 @@ it('should concat before files, source files, after files and spec files', funct
     cb();
 });
 
-it('should filter source files by given expression in filterSources config', function (cb){
-var options = kextjs.setOptions({        
+it('should filter source files by given expression in filterSources config', function(cb) {
+    var options = kextjs.setOptions({
         beforeSource: ['before.js'],
         afterSource: ['after.js'],
         tests: ['fixture1.js', 'fixture2.js'],
@@ -120,6 +122,21 @@ var options = kextjs.setOptions({
     assert.strictEqual('after.js', options.karma.files.pop());
     assert.strictEqual('U4/src/some/src1.js', options.karma.files.pop());
     assert.strictEqual('before.js', options.karma.files.pop());
+
+    cb();
+});
+
+it('should filter source files to cover by given expression in filterSources config', function(cb) {
+    var options = kextjs.setOptions({
+        beforeSource: ['before.js'],
+        afterSource: ['after.js'],
+        tests: ['fixture1.js', 'fixture2.js'],
+        filterCoverage: 'U4/src/some',
+        coverage: true
+    }, ['U4/src/some/src1.js', 'U4/src/other/src2.js']);
+
+    assert.strictEqual(1, Object.keys(options.karma.preprocessors).length);
+    assert.strictEqual('coverage', options.karma.preprocessors['U4/src/some/src1.js']);
 
     cb();
 });
