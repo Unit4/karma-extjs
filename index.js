@@ -44,7 +44,7 @@ module.exports = {
         var sources = source.slice(0);
 
         if (options.filterSource) {
-            var filterSource = options.filterSource.replace(/\\/g, '\\').replace(/\//g, '\/');
+            var filterSource = options.filterSource.replace(/\\/g, '\\\\').replace(/\//g, '\/');
             var sourcesRegex = new RegExp(filterSource);
 
             sources = sources.filter(function(file) {
@@ -55,7 +55,7 @@ module.exports = {
         var filesToCover = sources.slice(0);
 
         if (options.filterCoverage) {
-            var filterCoverage = options.filterCoverage.replace(/\\/g, '\\').replace(/\//g, '\/');
+            var filterCoverage = options.filterCoverage.replace(/\\/g, '\\\\').replace(/\//g, '\/');
             var coverageRegex = new RegExp(filterCoverage);
 
             filesToCover = filesToCover.filter(function(file) {
