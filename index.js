@@ -7,6 +7,30 @@ var Server = require('karma').Server;
 var merge = require('merge');
 var jsb3 = require('jsb3');
 
+function applyFilter(list, filter) {
+    if (typeof filter === 'string') {
+        filter = [filter];
+    }
+
+    filter = filter.map(escapeBars).map(createRegex);
+
+    list = list.filter(function(file) {
+        return filter.some(function(regex) {
+            return regex.test(file);
+        });
+    });
+
+    return list;
+}
+
+function escapeBars(regex) {
+    return regex.replace(/\\/g, '\\\\').replace(/\//g, '\/');
+}
+
+function createRegex(regex) {
+    return new RegExp(regex);
+}
+
 module.exports = {
     run: function(options) {
         var me = this;
@@ -44,23 +68,7 @@ module.exports = {
         var sources = source.slice(0);
 
         if (options.filterSource) {
-            var filterSource = options.filterSource.replace(/\\/g, '\\\\').replace(/\//g, '\/');
-            var sourcesRegex = new RegExp(filterSource);
-
-            sources = sources.filter(function(file) {
-                return sourcesRegex.test(file);
-            });
-        }
-
-        var filesToCover = sources.slice(0);
-
-        if (options.filterCoverage) {
-            var filterCoverage = options.filterCoverage.replace(/\\/g, '\\\\').replace(/\//g, '\/');
-            var coverageRegex = new RegExp(filterCoverage);
-
-            filesToCover = filesToCover.filter(function(file) {
-                return coverageRegex.test(file);
-            });
+            sources = applyFilter(sources, options.filterSource);
         }
 
         options.karma.files = options.beforeSource.concat(sources)
@@ -68,6 +76,12 @@ module.exports = {
             .concat(options.tests);
 
         if (options.coverage && sources) {
+            var filesToCover = sources.slice(0);
+
+            if (options.filterCoverage) {
+                filesToCover = applyFilter(filesToCover, options.filterCoverage);
+            }
+            
             options.karma.reporters.push('coverage');
             options.karma.preprocessors = merge(options.karma.preprocessors, this.preprocessCoverage(filesToCover));
         }

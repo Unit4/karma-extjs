@@ -126,7 +126,25 @@ it('should filter source files by given expression in filterSources config', fun
     cb();
 });
 
-it('should filter source files to cover by given expression in filterSources config', function(cb) {
+it('should filter source files by given list of expressions in filterSources config', function(cb) {
+    var options = kextjs.setOptions({
+        beforeSource: ['before.js'],
+        afterSource: ['after.js'],
+        tests: ['fixture1.js', 'fixture2.js'],
+        filterSource: ['U4/src/some/one', 'U4/src/some/two']
+    }, ['U4/src/some/one/src1.js', 'U4/src/some/two/src2.js', 'U4/src/some/three/src3.js']);
+
+    assert.strictEqual('fixture2.js', options.karma.files.pop());
+    assert.strictEqual('fixture1.js', options.karma.files.pop());
+    assert.strictEqual('after.js', options.karma.files.pop());
+    assert.strictEqual('U4/src/some/two/src2.js', options.karma.files.pop());
+    assert.strictEqual('U4/src/some/one/src1.js', options.karma.files.pop());
+    assert.strictEqual('before.js', options.karma.files.pop());
+
+    cb();
+});
+
+it('should filter source files to cover by given expression in filterCoverage config', function(cb) {
     var options = kextjs.setOptions({
         beforeSource: ['before.js'],
         afterSource: ['after.js'],
@@ -137,6 +155,22 @@ it('should filter source files to cover by given expression in filterSources con
 
     assert.strictEqual(1, Object.keys(options.karma.preprocessors).length);
     assert.strictEqual('coverage', options.karma.preprocessors['U4/src/some/src1.js']);
+
+    cb();
+});
+
+it('should filter source files to cover by given list of expressions in filterCoverage config', function(cb) {
+    var options = kextjs.setOptions({
+        beforeSource: ['before.js'],
+        afterSource: ['after.js'],
+        tests: ['fixture1.js', 'fixture2.js'],
+        filterCoverage: ['U4/src/some/one', 'U4/src/some/two'],
+        coverage: true
+    }, ['U4/src/some/one/src1.js', 'U4/src/some/two/src2.js', 'U4/src/some/three/src3.js']);
+
+    assert.strictEqual(2, Object.keys(options.karma.preprocessors).length);
+    assert.strictEqual('coverage', options.karma.preprocessors['U4/src/some/one/src1.js']);
+    assert.strictEqual('coverage', options.karma.preprocessors['U4/src/some/two/src2.js']);
 
     cb();
 });
