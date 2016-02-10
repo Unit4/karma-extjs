@@ -92,7 +92,7 @@ module.exports = {
     startKarma: function(options) {
         var deferred = Q.defer();
 
-        var staticServer = this.serveStatic(options.staticPort);
+        var staticServer = this.serveStatic(options.staticPort, options.staticLocation);
 
         var karma = new Server(options.karma, function(exitCode) {
             console.log('Karma has exited with ' + exitCode);
@@ -116,8 +116,8 @@ module.exports = {
         return cover;
     },
 
-    serveStatic: function(port) {
-        var location = './';
+    serveStatic: function(port, location) {
+        var location = location || './';
 
         var server = http.createServer(
             ecstatic({
