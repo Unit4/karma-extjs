@@ -33,9 +33,12 @@ function createRegex(regex) {
 
 module.exports = {
     run: function(options) {
-        var me = this;
+        var me = this,
+            sourcePromise;
 
-        return jsb3(options.jsb3).then(function(source) {
+        sourcePromise = options.jsb3 ? jsb3(options.jsb3) : Promise.resolve([]);
+
+        return sourcePromise.then(function(source) {
             return me.startKarma(me.setOptions(options, source));
         });
     },
