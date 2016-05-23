@@ -14,10 +14,10 @@ it('should add coverage to preprocessor dictionary', function(cb) {
 it('should default module options', function(cb) {
     var options = kextjs.setOptions();
     assert(options.beforeSource);
-    assert(options.beforeSource.length === 0)
+    assert(options.beforeSource.length === 0);
     assert(options.afterSource);
     assert(options.afterSource.length === 0);
-    assert(options.coverage == false);
+    assert(options.coverage === false);
     assert.strictEqual(9877, options.staticPort);
 
     cb();
@@ -44,7 +44,7 @@ it('should not override module options', function(cb) {
     });
 
     assert(options.beforeSource);
-    assert.strictEqual('before.js', options.beforeSource[0])
+    assert.strictEqual('before.js', options.beforeSource[0]);
     assert(options.afterSource);
     assert.strictEqual('after.js', options.afterSource[0]);
     assert(options.coverage);
@@ -97,13 +97,16 @@ it('should concat before files, source files, after files and spec files', funct
         beforeSource: ['before.js'],
         afterSource: ['after.js'],
         tests: ['fixture1.js', 'fixture2.js']
-    }, ['src1.js', 'src2.js']);
+    }, ['src1.js', 'src2.js']),
+    bootstrap;
 
     assert.strictEqual('fixture2.js', options.karma.files.pop());
     assert.strictEqual('fixture1.js', options.karma.files.pop());
     assert.strictEqual('after.js', options.karma.files.pop());
     assert.strictEqual('src2.js', options.karma.files.pop());
     assert.strictEqual('src1.js', options.karma.files.pop());
+    bootstrap = options.karma.files.pop().pattern;
+    assert.equal(bootstrap.indexOf('bootstrap.js') !== -1, true);
     assert.strictEqual('before.js', options.karma.files.pop());
 
     cb();
@@ -115,12 +118,15 @@ it('should filter source files by given expression in filterSources config', fun
         afterSource: ['after.js'],
         tests: ['fixture1.js', 'fixture2.js'],
         filterSource: 'U4/src/some'
-    }, ['U4/src/some/src1.js', 'U4/src/other/src2.js']);
+    }, ['U4/src/some/src1.js', 'U4/src/other/src2.js']),
+    bootstrap;
 
     assert.strictEqual('fixture2.js', options.karma.files.pop());
     assert.strictEqual('fixture1.js', options.karma.files.pop());
     assert.strictEqual('after.js', options.karma.files.pop());
     assert.strictEqual('U4/src/some/src1.js', options.karma.files.pop());
+    bootstrap = options.karma.files.pop().pattern;
+    assert.equal(bootstrap.indexOf('bootstrap.js') !== -1, true);
     assert.strictEqual('before.js', options.karma.files.pop());
 
     cb();
@@ -132,13 +138,16 @@ it('should filter source files by given list of expressions in filterSources con
         afterSource: ['after.js'],
         tests: ['fixture1.js', 'fixture2.js'],
         filterSource: ['U4/src/some/one', 'U4/src/some/two']
-    }, ['U4/src/some/one/src1.js', 'U4/src/some/two/src2.js', 'U4/src/some/three/src3.js']);
+    }, ['U4/src/some/one/src1.js', 'U4/src/some/two/src2.js', 'U4/src/some/three/src3.js']),
+    bootstrap;
 
     assert.strictEqual('fixture2.js', options.karma.files.pop());
     assert.strictEqual('fixture1.js', options.karma.files.pop());
     assert.strictEqual('after.js', options.karma.files.pop());
     assert.strictEqual('U4/src/some/two/src2.js', options.karma.files.pop());
     assert.strictEqual('U4/src/some/one/src1.js', options.karma.files.pop());
+    bootstrap = options.karma.files.pop().pattern;
+    assert.equal(bootstrap.indexOf('bootstrap.js') !== -1, true);
     assert.strictEqual('before.js', options.karma.files.pop());
 
     cb();
