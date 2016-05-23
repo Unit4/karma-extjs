@@ -6,6 +6,9 @@ var ecstatic = require('ecstatic');
 var Server = require('karma').Server;
 var merge = require('merge');
 var jsb3 = require('jsb3');
+var path = require('path');
+
+var bootstrapFile = { pattern: path.join(__dirname, '/bootstrap.js'), included: true, served: true, watched: false };
 
 function applyFilter(list, filter) {
     if (typeof filter === 'string') {
@@ -74,7 +77,10 @@ module.exports = {
             sources = applyFilter(sources, options.filterSource);
         }
 
-        options.karma.files = options.beforeSource.concat(sources)
+        options.karma.files = []
+            .concat(options.beforeSource)
+            .concat([bootstrapFile])
+            .concat(sources)
             .concat(options.afterSource)
             .concat(options.tests);
 
@@ -84,7 +90,7 @@ module.exports = {
             if (options.filterCoverage) {
                 filesToCover = applyFilter(filesToCover, options.filterCoverage);
             }
-            
+
             options.karma.reporters.push('coverage');
             options.karma.preprocessors = merge(options.karma.preprocessors, this.preprocessCoverage(filesToCover));
         }
