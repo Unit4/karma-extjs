@@ -1,6 +1,7 @@
 'use strict';
 var assert = require('assert');
 var kextjs = require('./index');
+var path = require('path');
 
 it('should add coverage to preprocessor dictionary', function(cb) {
     var prep = kextjs.preprocessCoverage(['file1', 'file2']);
@@ -182,4 +183,24 @@ it('should filter source files to cover by given list of expressions in filterCo
     assert.strictEqual('coverage', options.karma.preprocessors['U4/src/some/two/src2.js']);
 
     cb();
+});
+
+it('should use a custom context file', function(cb){
+	var options = kextjs.setOptions({
+        tests: ['fixture1.js', 'fixture2.js'],
+    }, ['src1.js']);
+	
+	assert.strictEqual(options.karma.customContextFile, path.join(__dirname, '/context.html'));
+	
+	cb();
+});
+
+it('should use a custom debug file', function(cb){
+	var options = kextjs.setOptions({
+        tests: ['fixture1.js', 'fixture2.js'],
+    }, ['src1.js']);
+	
+	assert.strictEqual(options.karma.customDebugFile, path.join(__dirname, '/debug.html'));
+	
+	cb();
 });

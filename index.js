@@ -94,6 +94,9 @@ module.exports = {
             options.karma.reporters.push('coverage');
             options.karma.preprocessors = merge(options.karma.preprocessors, this.preprocessCoverage(filesToCover));
         }
+		
+		options.karma.customContextFile = path.join(__dirname, '/context.html');
+		options.karma.customDebugFile = path.join(__dirname, '/debug.html');
 
         return options;
     },
