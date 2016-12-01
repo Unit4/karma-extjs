@@ -44,6 +44,8 @@
     "karma-junit-reporter": "1.0.x",
     "karma-phantomjs-launcher": "1.0.x",
     "karma-junit-reporter": "^1.0.0",
+	"karma-mocha-reporter": "^2.0.0",
+	"karma-generic-preprocessor": "1.1.0",
     "phantomjs": "2.1.x"
   },
   "devDependencies": {
