@@ -1,6 +1,6 @@
 {
   "name": "karma-extjs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Use Karma to run tests for Ext JS applications",
   "license": "MIT",
   "author": "Bjørn Harald Olsen <bjornhol@gmail.com>",
