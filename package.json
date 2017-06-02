@@ -1,6 +1,6 @@
 {
   "name": "karma-extjs",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Use Karma to run tests for Ext JS applications",
   "license": "MIT",
   "author": "Bjørn Harald Olsen <bjornhol@gmail.com>",
@@ -29,24 +29,24 @@
     "url": "https://github.com/unit4/karma-extjs/issues"
   },
   "dependencies": {
-    "q": "2.0.x",
-    "ecstatic": "1.4.x",
+    "ecstatic": "2.1.x",
+    "jasmine-core": "2.5.x",
     "jsb3": "1.0.x",
-    "merge": "1.2.x",
-    "karma": "1.1.x",
-    "karma-coverage": "1.0.x",
-    "karma-jasmine": "1.0.x",
-    "jasmine-core": "2.4.x",
-    "karma-chrome-launcher": "1.0.x",
-    "karma-ie-launcher": "1.0.x",
-    "karma-script-launcher": "1.0.x",
+    "karma": "1.7.x",
+    "karma-chrome-launcher": "2.1.x",
+    "karma-coverage": "1.1.x",
+    "karma-edge-launcher": "^0.4.1",
     "karma-firefox-launcher": "1.0.x",
-    "karma-junit-reporter": "1.0.x",
-    "karma-phantomjs-launcher": "1.0.x",
+    "karma-generic-preprocessor": "1.1.0",
+    "karma-ie-launcher": "1.0.x",
+    "karma-jasmine": "1.1.x",
     "karma-junit-reporter": "^1.0.0",
-	"karma-mocha-reporter": "^2.0.0",
-	"karma-generic-preprocessor": "1.1.0",
-    "phantomjs": "2.1.x"
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-phantomjs-launcher": "1.0.x",
+    "karma-script-launcher": "1.0.x",
+    "merge": "1.2.x",
+    "phantomjs": "2.1.x",
+    "q": "2.0.x"
   },
   "devDependencies": {
     "mocha": "*"
