@@ -5,7 +5,7 @@
 
 	window.__karma__.loaded = function(){};
 
-	if(Ext){
+	if(typeof Ext !== 'undefined'){
 		Ext.onReady(function () {
 			Ext4Ready = true;
 		});
@@ -13,7 +13,7 @@
 		Ext4Ready = true;
 	}  
 
-	if(Ext6){
+	if(typeof Ext6 !== 'undefined'){
 		Ext6.onReady(function () {
 			Ext6Ready = true;
 		});
